@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    image : trainwithshubham/my-note-app:latest
+    image : sampathsai/to-do:latest
     ports:
       - "80:80"
     volumes:
