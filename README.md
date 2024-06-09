@@ -1,6 +1,6 @@
-# To-Do List CI/CD
-# Dockerhub project link:- https://hub.docker.com/repository/docker/sampathsai/my-todo-app/
-# image file :- docker pull sampathsai/my-todo-app:latest
+# To-Do List CI/CD using jenkins, github web hooks, Dockerhub & Docker
+### Dockerhub project link:- https://hub.docker.com/repository/docker/sampathsai/my-todo-app/
+### image file :- docker pull sampathsai/my-todo-app:latest
 
 ## Prerequisites
 1. **Jenkins**: Ensure Jenkins is installed and running.
