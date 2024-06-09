@@ -9,6 +9,50 @@
 4. **GitHub Repository**: The repository containing the To-Do List application.
 5. **Docker Hub Credentials**: Store your Docker Hub credentials in Jenkins with the ID 'dc'.
 
+## Installation Steps
+
+### 1. Docker and Docker Compose Installation in your prefered (system aws EC2)
+
+```bash
+$ sudo apt-get update
+$ sudo apt install docker.io -y
+$ sudo apt install docker-compose -y
+$ sudo usermod -aG docker $USER
+$ sudo reboot
+
+# After reboot
+$ docker ps
+```
+### 2. Jenkins Installation
+
+```bash
+$ sudo apt install openjdk-17-jre-headless -y
+$ java --version
+$ sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+$ echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+$ sudo apt-get update
+$ sudo apt-get install jenkins -y 
+$ systemctl status jenkins
+$ sudo usermod -aG docker jenkins
+$ sudo reboot
+
+# After reboot
+$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+### 3. Git Installation (if not already installed)
+
+```bash
+$ git --version
+$ sudo apt install git -y
+```
+### 4. Initial Docker Setup for the Application
+```bash
+$ docker build -t to-do .
+$ docker run -itd -p 80:80 --name to-do to-do
+$ docker stop to-do
+$ docker rm to-do
+```
+
 ## Setting Up the Pipeline
 
 1. **Clone the repository**: Ensure the repository is accessible from Jenkins.
