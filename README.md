@@ -114,6 +114,13 @@ pipeline {
                 git url: "https://github.com/saisampathpaladi/to-do-list-cicd.git", branch: "main"
             }
         }
+        stage("Test") {
+            steps {
+                echo "Running tests"
+                // Add your test commands here
+                // e.g., sh "pytest tests/"
+            }
+        }
         stage("Build") {
             steps {
                 echo "Building the code"
@@ -139,13 +146,6 @@ pipeline {
                     docker-compose down
                     docker-compose up -d
                 """
-            }
-        }
-        stage("Test") {
-            steps {
-                echo "Running tests"
-                // Add your test commands here
-                // e.g., sh "pytest tests/"
             }
         }
     }
