@@ -30,8 +30,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 sudo usermod -aG jenkins $USER
 
 # Reboot to apply group changes (optional, if needed)
-# sudo reboot
-
+sudo reboot
 # Post-installation instructions
 echo "====================================================="
 echo "Jenkins is installed and running."
