@@ -23,8 +23,7 @@ This repository contains a shell script to automate the installation of Docker, 
 1. Clone this repository to your local machine:
 
     ```sh
-    git clone https://github.com/yourusername/yourrepository.git
-    cd yourrepository
+    git clone https://github.com/saisampathpaladi/CI-CD_Jenkins_TO-DO-LIST-APP.git
     ```
 
 2. Make the script executable:
@@ -68,8 +67,6 @@ Follow the Jenkins setup wizard to complete the installation.
 - You might need to log out and log back in for the group changes to take effect for your user.
 
 ---
-
-Replace `yourusername` and `yourrepository` with your actual GitHub username and repository name.
 
 # Manual installation guide : (skip this if you follow my automated installation using shell script step)
 
