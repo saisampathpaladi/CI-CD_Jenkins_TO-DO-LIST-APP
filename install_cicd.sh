@@ -8,12 +8,15 @@ sudo apt-get install -y docker.io docker-compose
 sudo usermod -aG docker $USER
 
 # Install Java (required for Jenkins)
-sudo apt-get install -y openjdk-17-jre-headless
+sudo apt install openjdk-17-jre-headless -y
+java --version
+
+# Add Jenkins repository and key
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
 
 # Install Jenkins
-wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update
 sudo apt-get install -y jenkins
 
 # Start Jenkins service
@@ -22,15 +25,20 @@ sudo systemctl start jenkins
 # Wait for Jenkins to start
 sleep 30
 
+# Check Jenkins service status
+systemctl status jenkins
+
 # Retrieve initial admin password
 echo "Jenkins initial admin password:"
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
-# Add current user to jenkins group
-sudo usermod -aG jenkins $USER
+# Add Jenkins user to Docker group
+sudo usermod -aG docker jenkins
 
 # Reboot to apply group changes (optional, if needed)
+echo "Rebooting system to apply group changes..."
 sudo reboot
+
 # Post-installation instructions
 echo "====================================================="
 echo "Jenkins is installed and running."
