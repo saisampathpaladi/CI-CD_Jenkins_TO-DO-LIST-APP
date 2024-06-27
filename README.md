@@ -9,6 +9,70 @@
 4. **GitHub Repository**: The repository containing the To-Do List application.
 5. **Docker Hub Credentials**: Store your Docker Hub credentials in Jenkins with the ID 'dc'.
 
+# Automated Installation of Docker, Jenkins, and Docker Compose
+
+This repository contains a shell script to automate the installation of Docker, Docker Compose, and Jenkins on an Ubuntu 22.04 system.
+
+## Prerequisites
+
+- Ubuntu 22.04 system
+- Sudo privileges
+
+## Installation
+
+1. Clone this repository to your local machine:
+
+    ```sh
+    git clone https://github.com/yourusername/yourrepository.git
+    cd yourrepository
+    ```
+
+2. Make the script executable:
+
+    ```sh
+    chmod +x install_cicd.sh
+    ```
+
+3. Run the script:
+
+    ```sh
+    ./install_cicd.sh
+    ```
+
+## Script Details
+
+The `install_cicd.sh` script performs the following steps:
+
+1. Updates the package list and installs Docker and Docker Compose.
+2. Adds the current user to the `docker` group.
+3. Installs OpenJDK 17, required for Jenkins.
+4. Adds the Jenkins repository and key.
+5. Installs Jenkins.
+6. Starts the Jenkins service and waits for it to initialize.
+7. Displays the initial Jenkins admin password.
+8. Adds the Jenkins user to the `docker` group.
+9. Reboots the system to apply group changes.
+
+## Post-Installation
+
+After the system reboots, Jenkins will be running. Access Jenkins at:
+
+    http://localhost:8080
+for AES EC2 instance make sure you open 8080 port from security group and also replace localhost with EC2 servers IP address
+
+Follow the Jenkins setup wizard to complete the installation.
+
+## Notes
+
+- The script includes a reboot command to apply group changes. Ensure you save any work before running the script.
+- You might need to log out and log back in for the group changes to take effect for your user.
+
+---
+
+Replace `yourusername` and `yourrepository` with your actual GitHub username and repository name.
+
+# Manual installation guide : (skip this if you follow my automated installation using shell script step)
+
 ## Installation Steps
 
 ### 1. Docker and Docker Compose Installation in your prefered (system aws EC2)
@@ -52,6 +116,7 @@ $ docker run -itd -p 80:80 --name to-do to-do
 $ docker stop to-do
 $ docker rm to-do
 ```
+# (optional step ends here)
 
 ## Setting Up the Pipeline
 
